@@ -1,3 +1,4 @@
+import collections
 import datetime
 import praw
 from typing import List, Dict, Any, Tuple
@@ -33,25 +34,13 @@ def extract_comment_authors(comments) -> List[str]:
 
 def count_author_posts(posts: List[Dict[str, Any]], subreddit_name: str, reddit: praw.Reddit) -> Dict[str, int]:
     subreddit = reddit.subreddit(subreddit_name)
-    user_post_count: Dict[str, int] = {}
-    for post in subreddit.top(limit=50):
-        author = post.author.name
-        if author in user_post_count:
-            user_post_count[author] += 1
-        else:
-            user_post_count[author] = 1
+    user_post_count = collections.Counter(post.author.name for post in subreddit.top(limit=50))
     return user_post_count
 
 
 def count_author_comments(posts: List[Dict[str, Any]], subreddit_name: str, reddit: praw.Reddit) -> Dict[str, int]:
     subreddit = reddit.subreddit(subreddit_name)
-    comments_count: Dict[str, int] = {}
-    for comment in subreddit.comments(limit=490):
-        author = comment.author
-        if author in comments_count:
-            comments_count[author] += 1
-        else:
-            comments_count[author] = 1
+    comments_count = collections.Counter(comment.author for comment in subreddit.comments(limit=500))
     return comments_count
 
 
