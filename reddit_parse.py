@@ -55,6 +55,6 @@ def count_author_comments(posts: List[Dict[str, Any]], subreddit_name: str, redd
     return comments_count
 
 
-def fetch_top_users(user_data: Dict[str, int]) -> List[Tuple[str, int]]:
+def fetch_top_users(user_data: Dict[str, int], count: int) -> List[Tuple[str, int]]:
     sorted_user_data = sorted(user_data.items(), key=itemgetter(1), reverse=True)
-    return sorted_user_data[0:10]
+    return sorted_user_data[:count]
