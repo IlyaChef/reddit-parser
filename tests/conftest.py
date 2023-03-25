@@ -44,7 +44,7 @@ def mock_posts():
 
 
 @pytest.fixture
-def mock_reddit():
+def mock_reddit_posts():
     reddit = MagicMock()
     subreddit = MagicMock()
     subreddit.display_name = 'test'

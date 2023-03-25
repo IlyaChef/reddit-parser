@@ -19,8 +19,8 @@ def test_get_subreddit_posts_returns_correct_post_data(mock_subreddit, mock_post
         assert post["comment_authors"] == mock_posts[i]["comment_authors"]
 
 
-def test_count_author_comments(comments, mock_reddit):
-    result = count_author_comments(comments, "test", mock_reddit)
+def test_count_author_comments(comments, mock_reddit_posts):
+    result = count_author_comments(comments, "test", mock_reddit_posts)
     assert result == {"John Doe": 2, "Jane Doe": 1}
 
 
