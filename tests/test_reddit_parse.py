@@ -1,5 +1,5 @@
 from unittest import mock
-from reddit_parse import get_subreddit_posts, count_author_posts, count_author_comments, fetch_top_users, extract_comment_authors
+from reddit_parse import get_subreddit_posts, count_author_comments, fetch_top_users, extract_comment_authors
 
 
 def test_get_subreddit_posts_returns_correct_post_data(mock_subreddit, mock_posts):
