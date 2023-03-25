@@ -34,7 +34,9 @@ def extract_comment_authors(comments) -> List[str]:
 
 def count_author_posts(posts: List[Dict[str, Any]], subreddit_name: str, reddit: praw.Reddit) -> Dict[str, int]:
     subreddit = reddit.subreddit(subreddit_name)
-    user_post_count = collections.Counter(post.author.name for post in subreddit.top(limit=50))
+    user_post_count = collections.Counter(
+        post.author.name for post in subreddit.top(limit=50) if post.author is not None
+    )
     return user_post_count
 
 
